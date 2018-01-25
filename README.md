@@ -10,6 +10,7 @@ Pocket-sized implementations of machine learning models.
   * [Installation](#installation)
   * [Implementations](#implementations)
     + [Linear Regression](#linear-regression)
+    + [Linear Discriminant Analysis](#linear-discriminant-analysis)
     + [K-Nearest Neighbors](#k-nearest-neighbors)
     + [Principal Component Analysis](#principal-component-analysis)
 
@@ -17,7 +18,7 @@ Pocket-sized implementations of machine learning models.
     $ git clone https://github.com/eriklindernoren/NapkinML
     $ cd NapkinML
     $ sudo python setup.py install
-    
+
 ## Implementations
 ### Linear Regression
 ```python
@@ -37,6 +38,21 @@ $ python napkin_ml/examples/linear_regression.py
 <p align="center">
     Figure: Linear Regression.
 </p>
+
+### Linear Discriminant Analysis
+```python
+class LDA():
+    def fit(self, X, y):
+        cov_tot = sum([np.cov(X[y == c], rowvar=False) for c in [0, 1]])
+        mean_diff = X[y == 0].mean(0) - X[y == 1].mean(0)
+        self.w = np.linalg.inv(cov_tot).dot(mean_diff)
+    def predict(self, X):
+        return [1 * (x.dot(self.w) < 0) for x in X]
+```
+
+```
+$ python napkin_ml/examples/lda.py
+```
 
 ### K-Nearest Neighbors
 ```python

@@ -20,3 +20,11 @@ class PCA():
         idx = eval.argsort()[::-1]
         evec = np.atleast_1d(evec[:, idx])[:, :n]
         return X.dot(evec)
+
+class LDA():
+    def fit(self, X, y):
+        cov_tot = sum([np.cov(X[y == c], rowvar=False) for c in [0, 1]])
+        mean_diff = X[y == 0].mean(0) - X[y == 1].mean(0)
+        self.w = np.linalg.inv(cov_tot).dot(mean_diff)
+    def predict(self, X):
+        return [1 * (x.dot(self.w) < 0) for x in X]
