@@ -22,8 +22,29 @@ Pocket-sized implementations of machine learning models.
 ### Regression
     $ python examples/linear_regression.py
 
+<p align="center">
+    <img src="http://eriklindernoren.se/images/linreg.png" width="640">
+</p>
+<p align="center">
+    Figure: Linear Regression.
+</p>
+
 ### Classification
     $ python napkin_ml/examples/knn.py
 
+<p align="center">
+    <img src="http://eriklindernoren.se/images/knn.png" width="640">
+</p>
+<p align="center">
+    Figure: Classification with K-Nearest Neighbors.
+</p>
+
 ### Dimensionality Reduction
     $ python napkin_ml/examples/pca.py
+    
+<p align="center">
+    <img src="http://eriklindernoren.se/images/pca.png" width="640">
+</p>
+<p align="center">
+    Figure: Dimensionality reduction with Principal Component Analysis.
+</p>
