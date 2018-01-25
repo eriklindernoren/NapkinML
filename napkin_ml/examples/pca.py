@@ -5,7 +5,7 @@ import matplotlib.cm as cmx
 import matplotlib.colors as colors
 import numpy as np
 
-from napkin_models import PCA
+from napkin_ml import PCA
 
 def main():
 

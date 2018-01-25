@@ -6,7 +6,7 @@ from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import normalize
 
-from napkin_models import KNN, PCA
+from napkin_ml import KNN, PCA
 
 def main():
     data = datasets.load_iris()

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import make_regression
 from sklearn.model_selection import train_test_split
 
-from napkin_models import LinearRegression
+from napkin_ml import LinearRegression
 
 def main():
 
