@@ -11,6 +11,7 @@ Pocket-sized implementations of machine learning models.
   * [Implementations](#implementations)
     + [Linear Regression](#linear-regression)
     + [Linear Discriminant Analysis](#linear-discriminant-analysis)
+    + [Logistic Regression](#logistic-regression)
     + [K-Nearest Neighbors](#k-nearest-neighbors)
     + [Principal Component Analysis](#principal-component-analysis)
 
@@ -53,6 +54,27 @@ class LDA():
 ```
 $ python napkin_ml/examples/lda.py
 ```
+
+### Logistic Regression
+```python
+class LogisticRegression():
+    def fit(self, X, y, n_epochs=4000, lr=0.01):
+        self.w = np.random.rand(X.shape[1])
+        for i in range(n_epochs):
+            self.w -= lr * -(y - sigmoid(X.dot(self.w))).dot(X)
+    def predict(self, X):
+        return np.round(sigmoid(X.dot(self.w))).astype(int)
+```
+
+```
+$ python napkin_ml/examples/logistic_regression.py
+```  
+<p align="center">
+    <img src="http://eriklindernoren.se/images/logreg.png" width="640">
+</p>
+<p align="center">
+    Figure: Logistic Regression.
+</p>
 
 ### K-Nearest Neighbors
 ```python
