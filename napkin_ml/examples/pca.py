@@ -38,8 +38,8 @@ def main():
     plt.legend(class_distr, y, loc=1)
 
     # Axis labels
-    plt.suptitle("PCA Dimensionality Reduction")
-    plt.title("Digit Dataset")
+    plt.suptitle("Principal Component Analysis")
+    plt.title("Digit dataset")
     plt.xlabel('Principal Component 1')
     plt.ylabel('Principal Component 2')
     plt.show()

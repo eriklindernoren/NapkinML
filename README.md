@@ -37,7 +37,7 @@ class KNN():
 $ python napkin_ml/examples/knn.py
 ```  
 <p align="center">
-    <img src="http://eriklindernoren.se/images/knn.png" width="640">
+    <img src="http://eriklindernoren.se/images/napkin_knn.png" width="640">
 </p>
 <p align="center">
     Figure: Classification of the Iris dataset with K-Nearest Neighbors.
@@ -57,7 +57,7 @@ class LinearRegression():
 $ python napkin_ml/examples/linear_regression.py
 ```  
 <p align="center">
-    <img src="http://eriklindernoren.se/images/linreg.png" width="640">
+    <img src="http://eriklindernoren.se/images/napkin_linreg.png" width="640">
 </p>
 <p align="center">
     Figure: Linear Regression.
@@ -93,7 +93,7 @@ class LogisticRegression():
 $ python napkin_ml/examples/logistic_regression.py
 ```  
 <p align="center">
-    <img src="http://eriklindernoren.se/images/log_reg1.png" width="640">
+    <img src="http://eriklindernoren.se/images/napkin_logreg.png" width="640">
 </p>
 <p align="center">
     Figure: Classification with Logistic Regression.
@@ -118,7 +118,7 @@ class MLP():
 $ python napkin_ml/examples/mlp.py
 ```  
 <p align="center">
-    <img src="http://eriklindernoren.se/images/napkin_mlp.png" width="640">
+    <img src="http://eriklindernoren.se/images/napkin_mlp1.png" width="640">
 </p>
 <p align="center">
     Figure: Classification of the Iris dataset with Multilayer Perceptron.
@@ -139,7 +139,7 @@ class PCA():
 $ python napkin_ml/examples/pca.py
 ```  
 <p align="center">
-    <img src="http://eriklindernoren.se/images/pca.png" width="640">
+    <img src="http://eriklindernoren.se/images/napkin_pca.png" width="640">
 </p>
 <p align="center">
     Figure: Dimensionality reduction with Principal Component Analysis.
