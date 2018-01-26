@@ -121,7 +121,7 @@ $ python napkin_ml/examples/mlp.py
     <img src="http://eriklindernoren.se/images/napkin_mlp1.png" width="640">
 </p>
 <p align="center">
-    Figure: Classification of the Iris dataset with Multilayer Perceptron.
+    Figure: Classification of the Iris dataset with Multilayer Perceptron <br> with one hidden layer.
 </p>
 
 
