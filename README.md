@@ -44,11 +44,11 @@ $ python napkin_ml/examples/linear_regression.py
 ```python
 class LDA():
     def fit(self, X, y):
-        cov_tot = sum([np.cov(X[y == c], rowvar=False) for c in [0, 1]])
+        cov_sum = sum([np.cov(X[y == val], rowvar=False) for val in [0, 1]])
         mean_diff = X[y == 0].mean(0) - X[y == 1].mean(0)
-        self.w = np.linalg.inv(cov_tot).dot(mean_diff)
+        self.w = np.linalg.inv(cov_sum).dot(mean_diff)
     def predict(self, X):
-        return [1 * (x.dot(self.w) < 0) for x in X]
+        return 1 * (X.dot(self.w) < 0)
 ```
 
 ```
