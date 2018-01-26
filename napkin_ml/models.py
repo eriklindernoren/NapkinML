@@ -16,11 +16,11 @@ class KNN():
         return y_pred
 
 class PCA():
-    def transform(self, X, n):
-        eval, evec = np.linalg.eig(np.cov(X, rowvar=False))
-        idx = eval.argsort()[::-1]
-        evec = evec[:, idx][:, :n]
-        return X.dot(evec)
+    def transform(self, X, dim):
+        e_val, e_vec = np.linalg.eig(np.cov(X, rowvar=False))
+        idx = e_val.argsort()[::-1]
+        e_vec = e_vec[:, idx][:, :dim]
+        return X.dot(e_vec)
 
 class LDA():
     def fit(self, X, y):

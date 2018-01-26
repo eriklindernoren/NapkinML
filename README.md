@@ -58,12 +58,12 @@ $ python napkin_ml/examples/lda.py
 ### Logistic Regression
 ```python
 class LogisticRegression():
-    def fit(self, X, y, n_epochs=4000, lr=0.01):
+    def fit(self, X, y, n_iter=4000, lr=0.01):
         self.w = np.random.rand(X.shape[1])
-        for i in range(n_epochs):
+        for _ in range(n_iter):
             self.w -= lr * -(y - sigmoid(X.dot(self.w))).dot(X)
     def predict(self, X):
-        return np.round(sigmoid(X.dot(self.w))).astype(int)
+        return np.rint(sigmoid(X.dot(self.w)))
 ```
 
 ```
@@ -100,11 +100,11 @@ $ python napkin_ml/examples/knn.py
 ### Principal Component Analysis
 ```python
 class PCA():
-    def transform(self, X, n):
-        eval, evec = np.linalg.eig(np.cov(X, rowvar=False))
-        idx = eval.argsort()[::-1]
-        evec = np.atleast_1d(evec[:, idx])[:, :n]
-        return X.dot(evec)
+    def transform(self, X, dim):
+        e_val, e_vec = np.linalg.eig(np.cov(X, rowvar=False))
+        idx = e_val.argsort()[::-1]
+        e_vec = e_vec[:, idx][:, :dim]
+        return X.dot(e_vec)
 ```
 
 ```
