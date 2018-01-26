@@ -50,7 +50,7 @@ def main():
         class_distr.append(plt.scatter(_x1, _x2, color=colors[i]))
 
     # Plot legend
-    plt.legend(class_distr, np.unique(y), loc=1)
+    plt.legend(class_distr, data.target_names[1:], loc=1)
 
     # Titles
     perc = 100 * accuracy

@@ -70,10 +70,10 @@ class LogisticRegression():
 $ python napkin_ml/examples/logistic_regression.py
 ```  
 <p align="center">
-    <img src="http://eriklindernoren.se/images/logreg.png" width="640">
+    <img src="http://eriklindernoren.se/images/logreg1.png" width="640">
 </p>
 <p align="center">
-    Figure: Logistic Regression.
+    Figure: Classification with Logistic Regression.
 </p>
 
 ### K-Nearest Neighbors
@@ -91,10 +91,10 @@ class KNN():
 $ python napkin_ml/examples/knn.py
 ```  
 <p align="center">
-    <img src="http://eriklindernoren.se/images/knn.png" width="640">
+    <img src="http://eriklindernoren.se/images/knn1.png" width="640">
 </p>
 <p align="center">
-    Figure: Classification with K-Nearest Neighbors.
+    Figure: Classification of the Iris dataset with K-Nearest Neighbors.
 </p>
 
 ### Principal Component Analysis
