@@ -70,7 +70,7 @@ class LogisticRegression():
 $ python napkin_ml/examples/logistic_regression.py
 ```  
 <p align="center">
-    <img src="http://eriklindernoren.se/images/logreg1.png" width="640">
+    <img src="http://eriklindernoren.se/images/log_reg1.png" width="640">
 </p>
 <p align="center">
     Figure: Classification with Logistic Regression.
