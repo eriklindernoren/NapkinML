@@ -83,7 +83,7 @@ class KNN():
         y_pred = np.empty(len(Xt))
         for i, xt in enumerate(Xt):
             idx = np.argsort([np.linalg.norm(x-xt) for x in X])[:k]
-            y_pred[i] = np.bincount([y[i] for i in idx]).argmax()
+            y_pred[i] = np.bincount(y[idx]).argmax()
         return y_pred
 ```
 
