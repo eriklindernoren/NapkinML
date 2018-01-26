@@ -19,21 +19,21 @@ class PCA():
     def transform(self, X, n):
         eval, evec = np.linalg.eig(np.cov(X, rowvar=False))
         idx = eval.argsort()[::-1]
-        evec = np.atleast_1d(evec[:, idx])[:, :n]
+        evec = evec[:, idx][:, :n]
         return X.dot(evec)
 
 class LDA():
     def fit(self, X, y):
-        cov_tot = sum([np.cov(X[y == c], rowvar=False) for c in [0, 1]])
+        cov_sum = sum([np.cov(X[y == c], rowvar=False) for c in [0, 1]])
         mean_diff = X[y == 0].mean(0) - X[y == 1].mean(0)
-        self.w = np.linalg.inv(cov_tot).dot(mean_diff)
+        self.w = np.linalg.inv(cov_sum).dot(mean_diff)
     def predict(self, X):
         return [1 * (x.dot(self.w) < 0) for x in X]
 
 class LogisticRegression():
-    def fit(self, X, y, n_epochs=4000, lr=0.01):
+    def fit(self, X, y, n_iter=4000, lr=0.01):
         self.w = np.random.rand(X.shape[1])
-        for i in range(n_epochs):
+        for _ in range(n_iter):
             self.w -= lr * -(y - sigmoid(X.dot(self.w))).dot(X)
     def predict(self, X):
-        return np.round(sigmoid(X.dot(self.w))).astype(int)
+        return np.rint(sigmoid(X.dot(self.w)))
