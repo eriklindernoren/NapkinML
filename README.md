@@ -101,10 +101,10 @@ $ python napkin_ml/examples/knn.py
 ```python
 class PCA():
     def transform(self, X, n):
-        eval, evec = np.linalg.eig(np.cov(X, rowvar=False))
-        idx = eval.argsort()[::-1]
-        evec = np.atleast_1d(evec[:, idx])[:, :n]
-        return X.dot(evec)
+        e_val, e_vec = np.linalg.eig(np.cov(X, rowvar=False))
+        idx = e_val.argsort()[::-1]
+        e_vec = np.atleast_1d(e_vec[:, idx])[:, :n]
+        return X.dot(e_vec)
 ```
 
 ```
