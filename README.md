@@ -40,7 +40,7 @@ $ python napkin_ml/examples/knn.py
     <img src="http://eriklindernoren.se/images/knn.png" width="640">
 </p>
 <p align="center">
-    Figure: Classification with K-Nearest Neighbors.
+    Figure: Classification of the Iris dataset with K-Nearest Neighbors.
 </p>
 
 
@@ -67,11 +67,11 @@ $ python napkin_ml/examples/linear_regression.py
 ```python
 class LDA():
     def fit(self, X, y):
-        cov_tot = sum([np.cov(X[y == c], rowvar=False) for c in [0, 1]])
+        cov_sum = sum([np.cov(X[y == val], rowvar=False) for val in [0, 1]])
         mean_diff = X[y == 0].mean(0) - X[y == 1].mean(0)
-        self.w = np.linalg.inv(cov_tot).dot(mean_diff)
+        self.w = np.linalg.inv(cov_sum).dot(mean_diff)
     def predict(self, X):
-        return [1 * (x.dot(self.w) < 0) for x in X]
+        return 1 * (X.dot(self.w) < 0)
 ```
 
 ```
@@ -81,22 +81,22 @@ $ python napkin_ml/examples/lda.py
 ### Logistic Regression
 ```python
 class LogisticRegression():
-    def fit(self, X, y, n_epochs=4000, lr=0.01):
+    def fit(self, X, y, n_iter=4000, lr=0.01):
         self.w = np.random.rand(X.shape[1])
-        for i in range(n_epochs):
+        for _ in range(n_iter):
             self.w -= lr * -(y - sigmoid(X.dot(self.w))).dot(X)
     def predict(self, X):
-        return np.round(sigmoid(X.dot(self.w))).astype(int)
+        return np.rint(sigmoid(X.dot(self.w)))
 ```
 
 ```
 $ python napkin_ml/examples/logistic_regression.py
 ```  
 <p align="center">
-    <img src="http://eriklindernoren.se/images/logreg.png" width="640">
+    <img src="http://eriklindernoren.se/images/log_reg1.png" width="640">
 </p>
 <p align="center">
-    Figure: Logistic Regression.
+    Figure: Classification with Logistic Regression.
 </p>
 
 ### Multilayer Perceptron
@@ -121,17 +121,17 @@ $ python napkin_ml/examples/mlp.py
     <img src="http://eriklindernoren.se/images/napkin_mlp.png" width="640">
 </p>
 <p align="center">
-    Figure: Classification with K-Nearest Neighbors.
+    Figure: Classification of the Iris dataset with Multilayer Perceptron.
 </p>
 
 
 ### Principal Component Analysis
 ```python
 class PCA():
-    def transform(self, X, n):
+    def transform(self, X, dim):
         e_val, e_vec = np.linalg.eig(np.cov(X, rowvar=False))
         idx = e_val.argsort()[::-1]
-        e_vec = np.atleast_1d(e_vec[:, idx])[:, :n]
+        e_vec = e_vec[:, idx][:, :dim]
         return X.dot(e_vec)
 ```
 
