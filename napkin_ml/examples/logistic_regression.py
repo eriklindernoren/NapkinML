@@ -23,7 +23,7 @@ def main():
 
     clf = LogisticRegression()
     clf.fit(X_train, y_train)
-    y_pred = clf.predict(X_test)
+    y_pred = np.rint(clf.predict(X_test))
 
     accuracy = np.mean(y_pred == y_test)
     print ("Accuracy:", accuracy)

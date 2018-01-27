@@ -39,9 +39,9 @@ class LogisticRegression():
     def fit(self, X, y, n_iter=4000, lr=0.01):
         self.w = np.random.rand(X.shape[1])
         for _ in range(n_iter):
-            self.w -= lr * -(y - sigmoid(X.dot(self.w))).dot(X)
+            self.w -= lr * (self.predict(X) - y).dot(X)
     def predict(self, X):
-        return np.rint(sigmoid(X.dot(self.w)))
+        return sigmoid(X.dot(self.w))
 
 class MLP():
     def fit(self, X, y, n_epochs=4000, lr=0.01, n_units=10):
