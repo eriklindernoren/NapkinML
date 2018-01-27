@@ -22,7 +22,7 @@ class KNN():
 
 class PCA():
     def transform(self, X, dim):
-        _, e_val, e_vec = svd(X - X.mean(0), full_matrices=True)
+        _, e_val, e_vec = np.linalg.svd(X - X.mean(0), full_matrices=True)
         idx = e_val.argsort()[::-1]
         e_vec = e_vec[idx][:dim]
         return X.dot(e_vec.T)
