@@ -129,10 +129,10 @@ $ python napkin_ml/examples/mlp.py
 ```python
 class PCA():
     def transform(self, X, dim):
-        e_val, e_vec = np.linalg.eig(np.cov(X, rowvar=False))
+        _, e_val, e_vec = svd(X - X.mean(0), full_matrices=True)
         idx = e_val.argsort()[::-1]
-        e_vec = e_vec[:, idx][:, :dim]
-        return X.dot(e_vec)
+        e_vec = e_vec[idx][:dim]
+        return X.dot(e_vec.T)
 ```
 
 ```

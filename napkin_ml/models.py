@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.special import expit as sigmoid
+from scipy.linalg import svd
 
 def softmax(x):
     e_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
@@ -21,10 +22,10 @@ class KNN():
 
 class PCA():
     def transform(self, X, dim):
-        e_val, e_vec = np.linalg.eig(np.cov(X, rowvar=False))
+        _, e_val, e_vec = svd(X - X.mean(0), full_matrices=True)
         idx = e_val.argsort()[::-1]
-        e_vec = e_vec[:, idx][:, :dim]
-        return X.dot(e_vec)
+        e_vec = e_vec[idx][:dim]
+        return X.dot(e_vec.T)
 
 class LDA():
     def fit(self, X, y):
