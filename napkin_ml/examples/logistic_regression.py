@@ -6,6 +6,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from napkin_ml import LogisticRegression, PCA
+from napkin_ml.utils import Plot
 
 
 def main():
@@ -31,40 +32,10 @@ def main():
     accuracy = np.mean(y_pred == y_test)
     print ("Accuracy:", accuracy)
 
-    # Reduce dimensions to 2d using pca and plot the results
-    X_transformed = PCA().transform(X, 2)
-
-    x1 = X_transformed[:, 0]
-    x2 = X_transformed[:, 1]
-    class_distr = []
-
-    y = y.astype(int)
-
-    # Get colors
-    cmap = plt.get_cmap('viridis')
-    colors = [cmap(i) for i in np.linspace(0, 1, len(np.unique(y)))]
-
-    # Plot the different class distributions
-    for i, l in enumerate(np.unique(y)):
-        _x1 = x1[y == l]
-        _x2 = x2[y == l]
-        _y = y[y == l]
-        class_distr.append(plt.scatter(_x1, _x2, color=colors[i]))
-
-    # Plot legend
-    plt.legend(class_distr, data.target_names[1:], loc=1)
-
-    # Titles
-    perc = 100 * accuracy
-    plt.suptitle("Logistic Regression")
-    plt.title("Accuracy: %.1f%%" % perc, fontsize=10)
-
-    # Axis labels
-    plt.xlabel('Principal Component 1')
-    plt.ylabel('Principal Component 2')
-
-    plt.show()
-
+    Plot().plot_in_2d(X, y,
+        title="Logistic Regression",
+        accuracy=accuracy,
+        legend_labels=data.target_names)
 
 if __name__ == "__main__":
     main()

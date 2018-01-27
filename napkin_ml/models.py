@@ -1,6 +1,10 @@
 import numpy as np
 from scipy.special import expit as sigmoid
 
+def softmax(x):
+    e_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
+    return e_x / np.sum(e_x, axis=-1, keepdims=True)
+
 class LinearRegression():
     def fit(self, X, y):
         self.w = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
@@ -37,3 +41,15 @@ class LogisticRegression():
             self.w -= lr * -(y - sigmoid(X.dot(self.w))).dot(X)
     def predict(self, X):
         return np.rint(sigmoid(X.dot(self.w)))
+
+class MLP():
+    def fit(self, X, y, n_epochs=4000, lr=0.01, n_units=10):
+        self.w = np.random.rand(X.shape[1], n_units)
+        self.v = np.random.rand(n_units, y.shape[1])
+        for _ in range(n_epochs):
+            h_out = sigmoid(X.dot(self.w))
+            out = softmax(h_out.dot(self.v))
+            self.v -= lr * h_out.T.dot(out - y)
+            self.w -= lr * X.T.dot((out - y).dot(self.v.T) * (h_out * (1 - h_out)))
+    def predict(self, X):
+        return softmax(sigmoid(X.dot(self.w)).dot(self.v))
