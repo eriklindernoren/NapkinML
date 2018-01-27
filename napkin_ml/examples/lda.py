@@ -2,17 +2,13 @@ from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
 
-from sklearn import datasets
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import normalize
-
 from napkin_ml import LDA, PCA
-from napkin_ml.utils import Plot
+from napkin_ml.utils import Plot, train_test_split, load_iris
 
 def main():
-    data = datasets.load_iris()
-    X = data.data
-    y = data.target
+    data = load_iris()
+    X = data['data']
+    y = data['target']
 
     # Reduce to two classes
     X = X[y != 2]
@@ -31,7 +27,7 @@ def main():
     Plot().plot_in_2d(X, y,
         title="Linear Discriminant Analysis",
         accuracy=accuracy,
-        legend_labels=data.target_names)
+        legend_labels=data['target_names'])
 
 if __name__ == "__main__":
     main()

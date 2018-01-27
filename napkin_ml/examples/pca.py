@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 
 from napkin_ml import PCA
+from napkin_ml.utils import load_digits
 
 def main():
 
@@ -14,10 +15,10 @@ def main():
     # and plot the results.
 
     # Load the dataset
-    data = pd.DataFrame.from_csv('napkin_ml/data/digits.csv', index_col=None)
+    data = load_digits()
 
-    X = data.iloc[:, :-1].values / 255
-    y = data.iloc[:, -1].values
+    X = data['data']
+    y = data['target']
 
     # Project the data onto the 2 primary principal components
     X_trans = PCA().transform(X, 2)

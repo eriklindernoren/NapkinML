@@ -3,20 +3,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from sklearn.model_selection import train_test_split
-
 from napkin_ml import LogisticRegression, PCA
-from napkin_ml.utils import Plot
+from napkin_ml.utils import Plot, load_iris, train_test_split
 
 
 def main():
     # Load dataset
-    data = pd.read_csv('napkin_ml/data/iris.csv', index_col=False)
+    data = load_iris()
 
-    X = data.iloc[:, :-1].values
-    y = data.iloc[:, -1].values
-
-    print (y)
+    X = data['data']
+    y = data['target']
 
     # Reduce to two classes
     X = X[y != 0]
@@ -35,7 +31,8 @@ def main():
     Plot().plot_in_2d(X, y,
         title="Logistic Regression",
         accuracy=accuracy,
-        legend_labels=data.target_names)
+        legend_labels=data['target_names'])
+
 
 if __name__ == "__main__":
     main()

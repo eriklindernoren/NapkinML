@@ -3,14 +3,19 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 
-from sklearn.datasets import make_regression
-from sklearn.model_selection import train_test_split
+from napkin_ml.utils import load_regression, train_test_split
 
 from napkin_ml import LinearRegression
 
 def main():
 
-    X, y = make_regression(n_samples=100, n_features=1, noise=20)
+    data = load_regression()
+
+    X = data['data'][:-150]
+    y = data['target'][:-150]
+
+    # Insert constant ones for bias
+    X = np.insert(X, 0, 1, axis=1)
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4)
 
@@ -26,6 +31,10 @@ def main():
     print ('Mean Squared Error: %.4f' % mse)
 
     y_pred_line = model.predict(X)
+
+    X = X[:, 1]
+    X_train = X_train[:, 1]
+    X_test = X_test[:, 1]
 
     # Color map
     cmap = plt.get_cmap('viridis')
