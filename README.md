@@ -129,7 +129,7 @@ $ python napkin_ml/examples/mlp.py
 ```python
 class PCA():
     def transform(self, X, dim):
-        _, S, C = np.linalg.svd(X - X.mean(0), full_matrices=True)
+        _, S, V = np.linalg.svd(X - X.mean(0), full_matrices=True)
         idx = S.argsort()[::-1]
         V = V[idx][:dim]
         return X.dot(V.T)
