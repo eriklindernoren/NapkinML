@@ -48,7 +48,7 @@ $ python napkin_ml/examples/knn.py
 ```python
 class LinearRegression():
     def fit(self, X, y):
-        self.w = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
+        self.w = np.linalg.lstsq(X, y, rcond=None)[0]
     def predict(self, X):
         return X.dot(self.w)
 ```
