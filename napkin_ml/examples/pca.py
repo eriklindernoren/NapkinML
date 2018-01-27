@@ -3,6 +3,7 @@ from sklearn import datasets
 import matplotlib.pyplot as plt
 import matplotlib.cm as cmx
 import matplotlib.colors as colors
+import pandas as pd
 import numpy as np
 
 from napkin_ml import PCA
@@ -13,9 +14,10 @@ def main():
     # and plot the results.
 
     # Load the dataset
-    data = datasets.load_digits()
-    X = data.data
-    y = data.target
+    data = pd.DataFrame.from_csv('napkin_ml/data/digits.csv', index_col=None)
+
+    X = data.iloc[:, :-1].values / 255
+    y = data.iloc[:, -1].values
 
     # Project the data onto the 2 primary principal components
     X_trans = PCA().transform(X, 2)

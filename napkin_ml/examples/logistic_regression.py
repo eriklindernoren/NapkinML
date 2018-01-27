@@ -1,19 +1,21 @@
 from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
-from sklearn import datasets
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import normalize
 
 from napkin_ml import LogisticRegression, PCA
 
 
 def main():
     # Load dataset
-    data = datasets.load_iris()
-    X = data.data
-    y = data.target
+    data = pd.read_csv('napkin_ml/data/iris.csv', index_col=False)
+
+    X = data.iloc[:, :-1].values
+    y = data.iloc[:, -1].values
+
+    print (y)
 
     # Reduce to two classes
     X = X[y != 0]
