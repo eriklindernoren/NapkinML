@@ -54,3 +54,30 @@ class MLP():
             self.w -= lr * X.T.dot((out - y).dot(self.v.T) * (h_out * (1 - h_out)))
     def predict(self, X):
         return softmax(sigmoid(X.dot(self.w)).dot(self.v))
+
+class KMeans():
+    
+    def compute_clusters(self, x, centers):
+        self.distances = np.empty((X.shape[0], len(centers)))
+        for number, center in enumerate(centers):
+            self.distances[:,number] = np.linalg.norm(X-center, axis=1)
+        self.cluster = [np.argmin(distance) for distance in self.distances]
+
+        return np.array(self.cluster)
+
+    def compute_centers(self, X, clusters):
+        self.new_centers = []
+        for number, cluster in enumerate(np.unique(clusters)):
+            self.new_centers.append(X[np.where(clusters == cluster),].mean())
+        return np.array(self.new_centers)
+
+    def fit(self, X, num_clusters, n_iter=1000, random_seed=0):
+        np.random.seed(random_seed)
+        self.initial_centers = X[np.random.choice(range(X.shape[0]), size=num_clusters, replace=False),]
+        self.clusters = self.compute_clusters(X, self.initial_centers)
+
+        for iteration in range(n_iter):
+            self.centers = self.compute_centers(X, self.clusters)
+            self.clusters = self.compute_clusters(X, self.centers)
+
+        return self.clusters
