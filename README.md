@@ -9,6 +9,7 @@ Pocket-sized implementations of machine learning models.
   * [Table of Contents](#table-of-contents)
   * [Installation](#installation)
   * [Implementations](#implementations)
+    + [K-Means](#k-means)
     + [K-Nearest Neighbors](#k-nearest-neighbors)
     + [Linear Regression](#linear-regression)
     + [Linear Discriminant Analysis](#linear-discriminant-analysis)
@@ -22,6 +23,32 @@ Pocket-sized implementations of machine learning models.
     $ sudo python setup.py install
 
 ## Implementations
+### K-Means
+```python
+class KMeans():
+    def compute_clusters(self, X, centers):
+        dist = np.array([np.linalg.norm(X-c, axis=1) for c in centers])
+        return np.argmin(dist, axis=0)
+    def compute_centers(self, X, clusters):
+        return np.array([X[clusters == c,].mean(0) for c in set(clusters)])
+    def fit(self, X, k, n_iter=10, random_seed=0):
+        clusters = self.compute_clusters(X, np.array(random.sample(list(X), k)))
+        for _ in range(n_iter):
+            centers = self.compute_centers(X, clusters)
+            clusters = self.compute_clusters(X, centers)
+        return clusters
+```
+
+```
+$ python napkin_ml/examples/kmeans.py
+```  
+<p align="center">
+    <img src="http://eriklindernoren.se/images/napkin_kmeans.png" width="640">
+</p>
+<p align="center">
+    Figure: K-Means clustering of the Iris dataset.
+</p>
+
 ### K-Nearest Neighbors
 ```python
 class KNN():
@@ -129,7 +156,7 @@ $ python napkin_ml/examples/mlp.py
 ```python
 class PCA():
     def transform(self, X, dim):
-        _, S, C = np.linalg.svd(X - X.mean(0), full_matrices=True)
+        _, S, V = np.linalg.svd(X - X.mean(0), full_matrices=True)
         idx = S.argsort()[::-1]
         V = V[idx][:dim]
         return X.dot(V.T)

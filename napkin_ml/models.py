@@ -1,4 +1,5 @@
 import numpy as np
+import random
 from scipy.special import expit as sigmoid
 from scipy.linalg import svd
 
@@ -54,3 +55,16 @@ class MLP():
             self.w -= lr * X.T.dot((out - y).dot(self.v.T) * (h_out * (1 - h_out)))
     def predict(self, X):
         return softmax(sigmoid(X.dot(self.w)).dot(self.v))
+
+class KMeans():
+    def compute_clusters(self, X, centers):
+        dist = np.array([np.linalg.norm(X-c, axis=1) for c in centers])
+        return np.argmin(dist, axis=0)
+    def compute_centers(self, X, clusters):
+        return np.array([X[clusters == c,].mean(0) for c in set(clusters)])
+    def fit(self, X, k, n_iter=10, random_seed=0):
+        clusters = self.compute_clusters(X, np.array(random.sample(list(X), k)))
+        for _ in range(n_iter):
+            centers = self.compute_centers(X, clusters)
+            clusters = self.compute_clusters(X, centers)
+        return clusters
