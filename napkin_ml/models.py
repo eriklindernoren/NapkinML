@@ -62,7 +62,7 @@ class KMeans():
         return np.argmin(dist, axis=0)
     def compute_centers(self, X, clusters):
         return np.array([X[clusters == c,].mean(0) for c in set(clusters)])
-    def fit(self, X, k, n_iter=10, random_seed=0):
+    def fit(self, X, k, n_iter=100, random_seed=0):
         clusters = self.compute_clusters(X, np.array(random.sample(list(X), k)))
         for _ in range(n_iter):
             centers = self.compute_centers(X, clusters)
