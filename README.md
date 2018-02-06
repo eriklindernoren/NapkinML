@@ -100,9 +100,6 @@ class LDA():
         return 1 * (X.dot(self.w) < 0)
 ```
 
-```
-$ python napkin_ml/examples/lda.py
-```
 
 ### Logistic Regression
 ```python
