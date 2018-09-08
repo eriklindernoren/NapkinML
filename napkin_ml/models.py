@@ -63,13 +63,9 @@ class MLP:
 
 
 class KMeans:
-    def compute_clusters(self, X, centers):
-        return np.argmin(cdist(X, centers), axis=1)
-    def compute_centers(self, X, clusters):
-        return np.array([X[clusters == c].mean(0) for c in clusters])
     def fit(self, X, k, n_iter=200):
-        clusters = self.compute_clusters(X, np.array(random.sample(list(X), k)))
+        centers = random.sample(list(X), k)
         for _ in range(n_iter):
-            centers = self.compute_centers(X, clusters)
-            clusters = self.compute_clusters(X, centers)
+            clusters = np.argmin(cdist(X, centers), axis=1)
+            centers = np.array([X[clusters == c].mean(0) for c in clusters])
         return clusters
