@@ -46,7 +46,7 @@ $ python napkin_ml/examples/kmeans.py
 
 ### K-Nearest Neighbors
 ```python
-class KNN_:
+class KNN:
     def predict(self, k, Xt, X, y):
         idx = np.argsort(cdist(Xt, X))[:, :k]
         y_pred = [np.bincount(y[i]).argmax() for i in idx]
