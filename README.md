@@ -66,7 +66,7 @@ $ python napkin_ml/examples/knn.py
 
 ### Linear Regression
 ```python
-class LinearRegression():
+class LinearRegression:
     def fit(self, X, y):
         self.w = np.linalg.lstsq(X, y, rcond=None)[0]
     def predict(self, X):
@@ -85,7 +85,7 @@ $ python napkin_ml/examples/linear_regression.py
 
 ### Linear Discriminant Analysis
 ```python
-class LDA():
+class LDA:
     def fit(self, X, y):
         cov_sum = sum([np.cov(X[y == val], rowvar=False) for val in [0, 1]])
         mean_diff = X[y == 0].mean(0) - X[y == 1].mean(0)
@@ -97,7 +97,7 @@ class LDA():
 
 ### Logistic Regression
 ```python
-class LogisticRegression():
+class LogisticRegression:
     def fit(self, X, y, n_iter=4000, lr=0.01):
         self.w = np.random.rand(X.shape[1])
         for _ in range(n_iter):
@@ -118,7 +118,7 @@ $ python napkin_ml/examples/logistic_regression.py
 
 ### Multilayer Perceptron
 ```python
-class MLP():
+class MLP:
     def fit(self, X, y, n_epochs=4000, lr=0.01, n_units=10):
         self.w = np.random.rand(X.shape[1], n_units)
         self.v = np.random.rand(n_units, y.shape[1])
