@@ -50,12 +50,10 @@ $ python napkin_ml/examples/kmeans.py
 
 ### K-Nearest Neighbors
 ```python
-class KNN():
+class KNN_:
     def predict(self, k, Xt, X, y):
-        y_pred = np.empty(len(Xt))
-        for i, xt in enumerate(Xt):
-            idx = np.argsort([np.linalg.norm(x-xt) for x in X])[:k]
-            y_pred[i] = np.bincount([y[i] for i in idx]).argmax()
+        idx = np.argsort(cdist(Xt, X))[:, :k]
+        y_pred = [np.bincount(y[i]).argmax() for i in idx]
         return y_pred
 ```
 
@@ -150,12 +148,11 @@ $ python napkin_ml/examples/mlp.py
 
 ### Principal Component Analysis
 ```python
-class PCA():
+class PCA:
     def transform(self, X, dim):
         _, S, V = np.linalg.svd(X - X.mean(0), full_matrices=True)
-        idx = S.argsort()[::-1]
-        V = V[idx][:dim]
-        return X.dot(V.T)
+        idx = S.argsort()[::-1][:dim]
+        return X.dot(V[idx].T)
 ```
 
 ```
