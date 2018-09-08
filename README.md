@@ -25,12 +25,12 @@ Pocket-sized implementations of machine learning models.
 ## Implementations
 ### K-Means
 ```python
-class KMeans():
+class KMeans:
     def compute_clusters(self, X, centers):
-        return np.argmin([np.linalg.norm(X-c, axis=1) for c in centers], axis=0)
+        return np.argmin(cdist(X, centers), axis=1)
     def compute_centers(self, X, clusters):
-        return np.array([X[clusters == c,].mean(0) for c in set(clusters)])
-    def fit(self, X, k, n_iter=100):
+        return np.array([X[clusters == c].mean(0) for c in clusters])
+    def fit(self, X, k, n_iter=200):
         clusters = self.compute_clusters(X, np.array(random.sample(list(X), k)))
         for _ in range(n_iter):
             centers = self.compute_centers(X, clusters)

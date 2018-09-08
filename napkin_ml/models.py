@@ -13,7 +13,6 @@ def softmax(x):
 class LinearRegression:
     def fit(self, X, y):
         self.w = np.linalg.lstsq(X, y, rcond=None)[0]
-
     def predict(self, X):
         return X.dot(self.w)
 
@@ -37,7 +36,6 @@ class LDA:
         cov_sum = sum([np.cov(X[y == val], rowvar=False) for val in [0, 1]])
         mean_diff = X[y == 0].mean(0) - X[y == 1].mean(0)
         self.w = np.linalg.inv(cov_sum).dot(mean_diff)
-
     def predict(self, X):
         return 1 * (X.dot(self.w) < 0)
 
@@ -47,7 +45,6 @@ class LogisticRegression:
         self.w = np.random.rand(X.shape[1])
         for _ in range(n_iter):
             self.w -= lr * (self.predict(X) - y).dot(X)
-
     def predict(self, X):
         return sigmoid(X.dot(self.w))
 
@@ -61,19 +58,16 @@ class MLP:
             out = softmax(h_out.dot(self.v))
             self.v -= lr * h_out.T.dot(out - y)
             self.w -= lr * X.T.dot((out - y).dot(self.v.T) * (h_out * (1 - h_out)))
-
     def predict(self, X):
         return softmax(sigmoid(X.dot(self.w)).dot(self.v))
 
 
 class KMeans:
     def compute_clusters(self, X, centers):
-        return np.argmin([np.linalg.norm(X - c, axis=1) for c in centers], axis=0)
-
+        return np.argmin(cdist(X, centers), axis=1)
     def compute_centers(self, X, clusters):
-        return np.array([X[clusters == c,].mean(0) for c in set(clusters)])
-
-    def fit(self, X, k, n_iter=100):
+        return np.array([X[clusters == c].mean(0) for c in clusters])
+    def fit(self, X, k, n_iter=200):
         clusters = self.compute_clusters(X, np.array(random.sample(list(X), k)))
         for _ in range(n_iter):
             centers = self.compute_centers(X, clusters)

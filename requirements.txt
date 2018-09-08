@@ -1,3 +1,5 @@
 matplotlib
 numpy
 scipy
+progressbar
+pandas
