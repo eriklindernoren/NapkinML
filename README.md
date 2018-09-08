@@ -27,9 +27,10 @@ Pocket-sized implementations of machine learning models.
 ```python
 class KMeans:
     def fit(self, X, k, n_iter=200):
+        centers = random.sample(list(X), k)
         for i in range(n_iter):
-            centers = np.array([X[clusters == c].mean(0) for c in clusters]) if i else random.sample(list(X), k)
             clusters = np.argmin(cdist(X, centers), axis=1)
+            centers = np.array([X[clusters == c].mean(0) for c in clusters])
         return clusters
 ```
 
