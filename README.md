@@ -1,7 +1,7 @@
 # NapkinML
 
 ## About
-Pocket-sized implementations of machine learning models.
+Pocket-sized implementations of machine learning models, most of which will fit in a tweet.
 
 ## Table of Contents
 - [NapkinML](#napkinml)
