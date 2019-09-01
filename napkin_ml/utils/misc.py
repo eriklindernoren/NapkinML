@@ -12,6 +12,19 @@ def normalize(X, axis=-1, order=2):
     l2[l2 == 0] = 1
     return X / np.expand_dims(l2, axis)
 
+def min_max_scaler(X):
+    """Min max scale the dataset X
+
+    Arguments:
+        X {list or array}
+
+    Returns:
+        Returns a numpy array
+    """
+    arr = np.array(X)
+    return np.divide([x - arr.min() for x in arr],
+        (arr.max() - arr.min()))
+
 
 def train_test_split(X, y, test_size=0.5, shuffle=True, seed=None):
     """ Split the data into train and test sets """
