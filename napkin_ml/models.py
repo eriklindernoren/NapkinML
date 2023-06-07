@@ -67,5 +67,5 @@ class KMeans:
         centers = random.sample(list(X), k)
         for _ in range(n_iter):
             clusters = np.argmin(cdist(X, centers), axis=1)
-            centers = np.array([X[clusters == c].mean(0) for c in clusters])
+            centers = np.array([X[clusters == c].mean(0) for c in range(k)])
         return clusters
